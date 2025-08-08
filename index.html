@@ -3,90 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jedidiah Abbas — Operations & Executive Support</title>
-  <meta name="description" content="Portfolio of Jedidiah Abbas — operations-focused executive support, HR ops, SOPs, and automation." />
+  <title>Jedidiah Abbas — Helping CEOs Win Back Time</title>
+  <meta name="description" content="Jedidiah Abbas helps CEOs and founders save hours every week by streamlining operations, managing the details, and keeping teams on track." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --ring: 0 0% 0%; }
     html { scroll-behavior: smooth; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
     .container { max-width: 1100px; }
-    .card { @apply rounded-2xl border border-black/10 shadow-sm hover:shadow-md transition-shadow bg-white; }
+    .card { border-radius: 1rem; border: 1px solid rgba(0,0,0,.1); background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.03); }
+
+    /* reveal animation */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+
+    /* testimonials animation */
+    .t-card { transition: transform .3s ease, box-shadow .3s ease, opacity .4s ease; opacity: 0; transform: translateY(10px); }
+    .t-card.show { opacity: 1; transform: translateY(0); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+    .t-card:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(0,0,0,.1); }
+
+    /* expertise chip popovers + animated bars */
+    .chip-pop { pointer-events: none; opacity: 0; transition: opacity .2s ease; }
+    .chip:hover .chip-pop, .chip:focus-within .chip-pop { opacity: 1; }
+    .bar { height: 6px; border-radius: 999px; overflow: hidden; background: #e5e7eb; }
+    .bar > span { display: block; height: 100%; width: 0; background: #16a34a; transition: width .4s ease; }
+    .chip:hover .bar > span, .chip:focus-within .bar > span { width: var(--pct, 75%); }
+
+    /* small utility to keep consistent section spacing */
+    section.section { padding: 4rem 0; }
+    @media (min-width: 768px) { section.section { padding: 4rem 0; } }
   </style>
 </head>
 <body class="bg-neutral-50 text-neutral-900">
-  <!-- Header / Nav -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-black/5">
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-black/5">
     <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="#top" class="font-semibold tracking-tight">Jedidiah Abbas</a>
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#projects" class="hover:opacity-70">Projects</a>
-        <a href="#services" class="hover:opacity-70">Services</a>
-        <a href="#experience" class="hover:opacity-70">Experience</a>
-        <a href="#about" class="hover:opacity-70">About</a>
-        <a href="#faq" class="hover:opacity-70">FAQ</a>
+      <a href="#top" class="font-semibold tracking-tight text-green-700">Jedidiah Abbas</a>
+      <button id="navToggle" class="md:hidden inline-flex items-center rounded-lg border border-black/10 px-3 py-2 text-sm" aria-label="Toggle navigation">Menu</button>
+      <nav id="mainNav" class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#projects" class="hover:text-green-700">Projects</a>
+        <a href="#services" class="hover:text-green-700">Services</a>
+        <a href="#experience" class="hover:text-green-700">Experience</a>
+        <a href="#about" class="hover:text-green-700">About</a>
+        <a href="#testimonials" class="hover:text-green-700">Testimonials</a>
+        <a href="assets/docs/Jedidiah-Abbas-Resume.pdf" download class="inline-flex items-center rounded-full border border-green-600 text-green-700 px-4 py-2 hover:bg-green-600 hover:text-white transition-colors">Download Resume</a>
       </nav>
-      <div class="flex items-center gap-3">
-        <a href="assets/docs/Jedidiah-Abbas-Resume.pdf" class="inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-sm hover:bg-black hover:text-white transition-colors">Resume</a>
+    </div>
+    <!-- MOBILE NAV -->
+    <div id="mobileNav" class="md:hidden hidden border-t border-black/5 bg-white">
+      <div class="container mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#projects" class="py-1">Projects</a>
+        <a href="#services" class="py-1">Services</a>
+        <a href="#experience" class="py-1">Experience</a>
+        <a href="#about" class="py-1">About</a>
+        <a href="#testimonials" class="py-1">Testimonials</a>
+        <a href="assets/docs/Jedidiah-Abbas-Resume.pdf" download class="inline-flex items-center justify-center rounded-full border border-green-600 text-green-700 px-4 py-2 hover:bg-green-600 hover:text-white transition-colors">Download Resume</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="top" class="container mx-auto px-4 pt-14 pb-10">
-    <div class="grid md:grid-cols-2 gap-6 items-center">
+  <!-- HERO -->
+  <section id="top" class="container mx-auto px-4 pt-20 pb-14">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
       <div>
-        <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Operations & Executive Support</h1>
-        <p class="mt-4 text-neutral-600">I streamline workflows, build scalable systems, and support executives so teams can move faster with less friction. Focus areas: HR ops, payroll, recruitment, SOPs, and AI-powered productivity.</p>
+        <h1 class="uppercase text-3xl md:text-5xl font-semibold leading-tight text-slate-900 tracking-tight">
+          HELPING CEOS WIN BACK TIME & FOCUS ON WHAT MATTERS
+        </h1>
+        <p class="mt-4 text-neutral-700 text-lg">
+          Inbox to zero, calendars that run themselves, payroll that just works, and simple SOPs your team will actually follow — so leadership can focus on decisions, not logistics.
+        </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#projects" class="inline-flex items-center rounded-full bg-black text-white px-5 py-2.5 text-sm hover:opacity-90">See Projects</a>
-          <a href="mailto:jedidiahabbas@gmail.com" class="inline-flex items-center rounded-full border border-black/10 px-5 py-2.5 text-sm hover:bg-black hover:text-white">Contact</a>
+          <a href="assets/docs/Jedidiah-Abbas-Resume.pdf" download class="inline-flex items-center rounded-full bg-green-600 text-white px-5 py-2.5 text-sm hover:bg-green-700 transition-colors">Download My Resume</a>
+          <a href="mailto:jedidiahabbas@gmail.com?subject=Hiring%20Inquiry" class="inline-flex items-center rounded-full border border-green-600 text-green-700 px-5 py-2.5 text-sm hover:bg-green-600 hover:text-white transition-colors">Hire Me</a>
         </div>
-        <p class="mt-4 text-xs text-neutral-500">Based in the Philippines • Open to remote work across timezones</p>
+        <p class="mt-4 text-xs text-neutral-500">Based in the Philippines • Available for remote work worldwide</p>
       </div>
       <div class="order-first md:order-last">
-        <div class="aspect-[4/3] rounded-2xl bg-neutral-200 card flex items-center justify-center text-neutral-500">Add headshot: <span class="ml-2 font-medium">/assets/img/headshot.jpg</span></div>
+        <div class="aspect-[4/3] rounded-2xl bg-neutral-200 card overflow-hidden">
+          <img src="assets/img/headshot.jpg" alt="Jedidiah Abbas" class="h-full w-full object-cover" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="container mx-auto px-4 py-10">
+  <!-- PROJECTS -->
+  <section id="projects" class="section container mx-auto px-4">
     <div class="flex items-end justify-between">
-      <h2 class="text-xl md:text-2xl font-semibold">Featured Projects</h2>
+      <h2 class="text-xl md:text-2xl font-semibold text-slate-900">Featured Projects</h2>
       <a href="#services" class="text-sm text-neutral-600 hover:text-neutral-900">All services</a>
     </div>
     <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Project 1 -->
-      <article class="card overflow-hidden">
-        <div class="aspect-[4/3] bg-neutral-100"></div>
+      <article class="card overflow-hidden transition transform hover:-translate-y-1 hover:shadow-lg">
+        <div class="aspect-[4/3] bg-neutral-100">
+          <img src="assets/img/project1.jpg" alt="Payroll Modernization — Wise Migration" class="h-full w-full object-cover" onerror="this.style.display='none'">
+        </div>
         <div class="p-4">
           <h3 class="font-medium">Payroll Modernization — Wise Migration</h3>
           <p class="mt-1 text-sm text-neutral-600">Migrated 85% of payroll to Wise for 20+ staff; standardized disbursements and reduced admin overhead.</p>
         </div>
       </article>
-      <!-- Project 2 -->
-      <article class="card overflow-hidden">
-        <div class="aspect-[4/3] bg-neutral-100"></div>
+      <article class="card overflow-hidden transition transform hover:-translate-y-1 hover:shadow-lg">
+        <div class="aspect-[4/3] bg-neutral-100">
+          <img src="assets/img/project2.jpg" alt="HR Policy & Onboarding System" class="h-full w-full object-cover" onerror="this.style.display='none'">
+        </div>
         <div class="p-4">
           <h3 class="font-medium">HR Policy & Onboarding System</h3>
           <p class="mt-1 text-sm text-neutral-600">Drafted employment contracts, rolled out HR documentation, and built scalable onboarding SOPs.</p>
         </div>
       </article>
-      <!-- Project 3 -->
-      <article class="card overflow-hidden">
-        <div class="aspect-[4/3] bg-neutral-100"></div>
+      <article class="card overflow-hidden transition transform hover:-translate-y-1 hover:shadow-lg">
+        <div class="aspect-[4/3] bg-neutral-100">
+          <img src="assets/img/project3.jpg" alt="Internal Tools Suite" class="h-full w-full object-cover" onerror="this.style.display='none'">
+        </div>
         <div class="p-4">
           <h3 class="font-medium">Internal Tools Suite</h3>
           <p class="mt-1 text-sm text-neutral-600">Created Salary Tracker, Payslip Templates, and a Tech Stack Audit sheet to improve day-to-day ops.</p>
         </div>
       </article>
-      <!-- Project 4 -->
-      <article class="card overflow-hidden">
-        <div class="aspect-[4/3] bg-neutral-100"></div>
+      <article class="card overflow-hidden transition transform hover:-translate-y-1 hover:shadow-lg">
+        <div class="aspect-[4/3] bg-neutral-100">
+          <img src="assets/img/project4.jpg" alt="Executive Ops Automation" class="h-full w-full object-cover" onerror="this.style.display='none'">
+        </div>
         <div class="p-4">
           <h3 class="font-medium">Executive Ops Automation</h3>
           <p class="mt-1 text-sm text-neutral-600">Applied Inbox Zero and AI tools to reduce CEO email time by 5–10% and improve meeting flow.</p>
@@ -95,108 +134,116 @@
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="container mx-auto px-4 py-10">
-    <h2 class="text-xl md:text-2xl font-semibold">Services</h2>
-    <div class="mt-6 grid md:grid-cols-2 gap-6">
-      <div class="card p-5">
-        <h3 class="font-medium">Executive & C‑Suite Support</h3>
-        <p class="mt-2 text-sm text-neutral-600">Calendar and inbox management, meeting prep and follow‑through, documentation, and stakeholder coordination.</p>
+  <!-- SERVICES → EXPERTISE CHIPS -->
+  <section id="services" class="section container mx-auto px-4">
+    <h2 class="text-xl md:text-2xl font-semibold text-slate-900">Expertise</h2>
+    <p class="mt-2 text-sm text-slate-600">Hover or tap a chip to see what it includes.</p>
+    <div class="mt-4 flex flex-wrap gap-3">
+      <div class="relative chip" style="--pct:80%">
+        <button class="inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600/30">Executive & C-Suite Support</button>
+        <div class="chip-pop absolute left-0 top-full mt-2 w-72">
+          <div class="rounded-xl border border-black/10 bg-white p-3 shadow-md text-sm text-neutral-700">
+            Calendar & inbox, meeting prep/follow-through, documentation, stakeholder coordination.
+            <div class="mt-2 bar"><span></span></div>
+          </div>
+        </div>
       </div>
-      <div class="card p-5">
-        <h3 class="font-medium">HR Operations</h3>
-        <p class="mt-2 text-sm text-neutral-600">Contracts, onboarding, benefits, compliance, payroll, and employee engagement programs.</p>
+      <div class="relative chip" style="--pct:75%">
+        <button class="inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600/30">HR Operations</button>
+        <div class="chip-pop absolute left-0 top-full mt-2 w-72">
+          <div class="rounded-xl border border-black/10 bg-white p-3 shadow-md text-sm text-neutral-700">
+            Contracts, onboarding, payroll (Wise/Deel), benefits & compliance.
+            <div class="mt-2 bar"><span></span></div>
+          </div>
+        </div>
       </div>
-      <div class="card p-5">
-        <h3 class="font-medium">Process & SOPs</h3>
-        <p class="mt-2 text-sm text-neutral-600">Design clear, scalable SOPs; implement tooling in ClickUp, Google Workspace, and related stacks.</p>
+      <div class="relative chip" style="--pct:80%">
+        <button class="inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600/30">Process & SOPs</button>
+        <div class="chip-pop absolute left-0 top-full mt-2 w-72">
+          <div class="rounded-xl border border-black/10 bg-white p-3 shadow-md text-sm text-neutral-700">
+            Map workflows, write clear SOPs, implement ClickUp/Workspace.
+            <div class="mt-2 bar"><span></span></div>
+          </div>
+        </div>
       </div>
-      <div class="card p-5">
-        <h3 class="font-medium">Automation & AI Enablement</h3>
-        <p class="mt-2 text-sm text-neutral-600">Identify bottlenecks and apply AI/automation to reduce busywork and improve throughput.</p>
+      <div class="relative chip" style="--pct:66%">
+        <button class="inline-flex items-center rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600/30">Automation & AI</button>
+        <div class="chip-pop absolute left-0 top-full mt-2 w-72">
+          <div class="rounded-xl border border-black/10 bg-white p-3 shadow-md text-sm text-neutral-700">
+            Identify bottlenecks and apply AI/automation to reduce busywork.
+            <div class="mt-2 bar"><span></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience -->
-  <section id="experience" class="container mx-auto px-4 py-10">
-    <h2 class="text-xl md:text-2xl font-semibold">Experience</h2>
-    <ol class="mt-6 relative border-l border-black/10 ml-2">
-      <li class="mb-8 ml-6">
-        <div class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-black"></div>
-        <h3 class="font-medium">Executive Assistant & Admin — MSP Launchpad</h3>
-        <p class="text-sm text-neutral-600">Oct 2023 – Present • Remote</p>
-        <ul class="mt-2 text-sm text-neutral-700 list-disc ml-5">
-          <li>Inbox Zero + AI to cut email time 5–10% for CEO.</li>
-          <li>Scheduling for 3 executives; coordinated client-facing engagements.</li>
-          <li>Migrated payroll to Wise (85%) for 20+ staff; built HR docs and onboarding.</li>
-        </ul>
+  <!-- EXPERIENCE TIMELINE -->
+  <section id="experience" class="section container mx-auto px-4">
+    <h2 class="text-xl md:text-2xl font-semibold text-slate-900">Recent Work</h2>
+    <p class="mt-2 text-sm text-slate-600">A simple timeline of what I’ve been focused on.</p>
+    <ol class="mt-6 relative border-l border-slate-200 ml-2">
+      <li class="mb-10 ml-6 reveal">
+        <span class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-green-600"></span>
+        <h3 class="font-medium text-slate-900">MSP Launchpad — Executive Operations</h3>
+        <p class="text-sm text-slate-600">Oct 2023 – Present • Remote</p>
+        <p class="mt-2 text-sm text-slate-700">Built HR docs and onboarding, migrated payroll to Wise, and reduced inbox time using a light AI-assisted workflow.</p>
       </li>
-      <li class="mb-8 ml-6">
-        <div class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-black"></div>
-        <h3 class="font-medium">Executive & HR Assistant — i7 Marketing & Wagner Meters</h3>
-        <p class="text-sm text-neutral-600">Sep 2022 – Aug 2025 • Remote</p>
-        <ul class="mt-2 text-sm text-neutral-700 list-disc ml-5">
-          <li>Full‑cycle recruitment; US/PH logistics coordination.</li>
-          <li>Payroll, benefits, compliance for an 8‑person PH team.</li>
-          <li>Formalized HR policies and onboarding SOPs; research via AI tools.</li>
-        </ul>
+      <li class="mb-10 ml-6 reveal">
+        <span class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-green-600"></span>
+        <h3 class="font-medium text-slate-900">i7 Marketing & Wagner Meters — HR & EA</h3>
+        <p class="text-sm text-slate-600">Sep 2022 – Aug 2025 • Remote</p>
+        <p class="mt-2 text-sm text-slate-700">Standardized onboarding, handled recruiting and payroll, coordinated schedules across time zones.</p>
       </li>
-      <li class="mb-8 ml-6">
-        <div class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-black"></div>
-        <h3 class="font-medium">Personal & Operations Assistant — Appliance Professionals</h3>
-        <p class="text-sm text-neutral-600">May 2022 – Aug 2023 • Remote</p>
-        <ul class="mt-2 text-sm text-neutral-700 list-disc ml-5">
-          <li>Executive support; scheduling, procurement, and customer engagement.</li>
-          <li>Led content creation and social media; streamlined day‑to‑day ops.</li>
-        </ul>
+      <li class="mb-10 ml-6 reveal">
+        <span class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-green-600"></span>
+        <h3 class="font-medium text-slate-900">Appliance Professionals — Ops Support</h3>
+        <p class="text-sm text-slate-600">May 2022 – Aug 2023 • Remote</p>
+        <p class="mt-2 text-sm text-slate-700">Kept daily ops smooth: scheduling, vendor coordination, customer comms, and light content.</p>
       </li>
     </ol>
   </section>
 
-  <!-- About -->
-  <section id="about" class="container mx-auto px-4 py-10">
-    <div class="grid md:grid-cols-3 gap-6 items-start">
+  <!-- ABOUT -->
+  <section id="about" class="section container mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-8 items-start">
       <div class="md:col-span-2">
-        <h2 class="text-xl md:text-2xl font-semibold">About</h2>
-        <p class="mt-4 text-neutral-700">Operations‑focused professional with 3+ years of experience driving business efficiency and supporting global executive teams. Skilled in streamlining workflows, managing remote operations, and building scalable systems for multicultural teams. Experienced in executive and C‑level support, calendar management, and HR operations including payroll, recruitment, and employee engagement. Adept at leveraging AI tools and project management platforms to optimize processes and enhance team productivity.</p>
+        <h2 class="text-xl md:text-2xl font-semibold text-slate-900">About</h2>
+        <p class="mt-4 text-slate-700">Hi, I’m Jed. I like clean calendars, tidy inboxes, and workflows that make sense. I help founders and teams run on rails — from hiring and payroll to SOPs and weekly rhythms. I’m detail-oriented, calm under pressure, and I’ll happily do the unglamorous work that makes everything else easier.</p>
+        <p class="mt-3 text-slate-700">If you’re ready to hand off the busywork, I can set up a simple system your team actually uses.</p>
+        <p class="mt-6 text-sm text-slate-600">Ready when you are — tap the button and let’s make your workweek lighter.</p>
+        <div class="mt-4">
+          <a href="mailto:jedidiahabbas@gmail.com?subject=Hiring%20Inquiry" class="inline-flex items-center rounded-full bg-green-600 text-white px-5 py-2.5 text-sm hover:bg-green-700 transition-colors">Hire Me</a>
+        </div>
       </div>
       <div>
-        <div class="aspect-[4/3] rounded-2xl bg-neutral-200 card flex items-center justify-center text-neutral-500">Add about photo</div>
+        <div class="aspect-[4/3] rounded-2xl bg-neutral-200 card overflow-hidden">
+          <img src="assets/img/about-photo.jpg" alt="About photo" class="h-full w-full object-cover" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="container mx-auto px-4 py-10">
-    <h2 class="text-xl md:text-2xl font-semibold">FAQ</h2>
-    <div class="mt-6 divide-y divide-black/10 border border-black/10 rounded-2xl bg-white">
-      <details class="group p-5">
-        <summary class="flex w-full cursor-pointer list-none items-center justify-between font-medium">What tools do you use?<span class="transition-transform group-open:rotate-180">▾</span></summary>
-        <p class="mt-2 text-sm text-neutral-700">ClickUp, Google Workspace, Zoom Workspace, Microsoft Office; payroll via Wise/Deel; AI tools like ChatGPT, Fireflies, and Microsoft Copilot.</p>
-      </details>
-      <details class="group p-5">
-        <summary class="flex w-full cursor-pointer list-none items-center justify-between font-medium">Availability<span class="transition-transform group-open:rotate-180">▾</span></summary>
-        <p class="mt-2 text-sm text-neutral-700">Based in the Philippines with flexible hours for US/EU overlap. Remote-first.</p>
-      </details>
-      <details class="group p-5">
-        <summary class="flex w-full cursor-pointer list-none items-center justify-between font-medium">Engagement model<span class="transition-transform group-open:rotate-180">▾</span></summary>
-        <p class="mt-2 text-sm text-neutral-700">Project-based or ongoing retainer for executive support and operations.</p>
-      </details>
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section container mx-auto px-4">
+    <h2 class="text-xl md:text-2xl font-semibold text-slate-900">Testimonials</h2>
+    <div class="mt-6 grid md:grid-cols-3 gap-6">
+      <figure class="card p-5 t-card reveal">
+        <blockquote class="text-sm text-neutral-700">“Jed brings order to chaos. Our onboarding and payroll are finally predictable.”</blockquote>
+        <figcaption class="mt-3 text-xs text-neutral-500">Founder, MSP Launchpad</figcaption>
+      </figure>
+      <figure class="card p-5 t-card reveal">
+        <blockquote class="text-sm text-neutral-700">“Reliable, proactive, and meticulous. He quietly handles the details so we can move faster.”</blockquote>
+        <figcaption class="mt-3 text-xs text-neutral-500">Director, Marketing & Ops</figcaption>
+      </figure>
+      <figure class="card p-5 t-card reveal">
+        <blockquote class="text-sm text-neutral-700">“From SOPs to scheduling, Jed made our remote setup feel effortless.”</blockquote>
+        <figcaption class="mt-3 text-xs text-neutral-500">Operations Lead</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- CTA / Footer -->
-  <section class="container mx-auto px-4 pb-16">
-    <div class="card p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div>
-        <h3 class="text-lg md:text-xl font-semibold">Let’s improve how your team operates</h3>
-        <p class="text-sm text-neutral-600 mt-1">Email me and we’ll outline a lightweight plan to streamline your workflows.</p>
-      </div>
-      <a href="mailto:jedidiahabbas@gmail.com" class="inline-flex items-center rounded-full bg-black text-white px-5 py-2.5 text-sm hover:opacity-90">Email Jedidiah</a>
-    </div>
-  </section>
-
+  <!-- FOOTER -->
   <footer class="border-t border-black/5 bg-white">
     <div class="container mx-auto px-4 py-6 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-2">
       <p>© <span id="year"></span> Jedidiah Abbas. All rights reserved.</p>
@@ -205,8 +252,28 @@
   </footer>
 
   <script>
-    // year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      // Year setter
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Mobile nav
+      const btn = document.getElementById('navToggle');
+      const mob = document.getElementById('mobileNav');
+      if (btn && mob) btn.addEventListener('click', () => mob.classList.toggle('hidden'));
+
+      // Scroll reveal
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
